@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+
+<generatorConfiguration>
+    <!-- 数据库的JDBC驱动(jar包) -->
+    <!--<classPathEntry
+            location="mysql-connector-java-5.1.38.jar"/>-->
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <!-- 生成的pojo，将implements Serializable-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>-->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/miaosha?serverTimezone=GMT"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!--
+        默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+        -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+
+        <!--
+        生成model(DataObject)模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
+        也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下
+        -->
+        <!--<javaModelGenerator targetPackage="com.joey.mybaties.test.pojo" targetProject="MAVEN">-->
+        <javaModelGenerator targetPackage="com.miaoshaproject.dataobject"
+                            targetProject="src/main/java"><!--生成包和工程的路径-->
+
+            <property name="enableSubPackages" value="true"/>  <!--是否让schema作为包的后缀-->
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+
+        <!--对应的mapper.xml文件  -->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!-- 对应的Mapper或dao接口类文件 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.miaoshaproject.dao"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--以上内容生成好后不用改变-->
+
+
+
+
+
+
+
+        <!--pojo实体生成器 逆向生成表-->
+        <!--tableNmae：用于自动生成代码的数据库表；
+            donmainObjectNmae：对应数据表的JavaBean类名-->
+        <!--schema即为数据库名 可不写 -->
+        <!--<table tableName="user_info" domainObjectName="UserDO"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            &lt;!&ndash;<property name="useActualColumnNames" value="false"/>  &ndash;&gt;
+        </table>
+        <table tableName="user_password" domainObjectName="UserPasswordDO"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            &lt;!&ndash;<property name="useActualColumnNames" value="false"/>  &ndash;&gt;
+        </table>-->
+        <table tableName="order_info" domainObjectName="Order"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <!--<property name="useActualColumnNames" value="false"/>  -->
+        </table>
+    <!--    <table tableName="promo" domainObjectName="PromoDo"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            &lt;!&ndash;<property name="useActualColumnNames" value="false"/>  &ndash;&gt;
+        </table>
+        <table tableName="sequence_info" domainObjectName="SequenceDo"
+               enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            &lt;!&ndash;<property name="useActualColumnNames" value="false"/>  &ndash;&gt;
+        </table>-->
+
+
+
+
+
+    </context>
+</generatorConfiguration>
